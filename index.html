@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,body{
+            width:100%;
+            height:100%
+        }
+        #body-wrapper {
+            min-height:100%;
+            background: url(https://patchwiki.biligame.com/images/gt/a/ab/6l0e9vkha97zxndi8q4oxqhrq5hnft3.jpg) no-repeat;
+            background-size: cover;
+        }
+        .footer {
+            color: white;
+            text-align: center;
+            padding-top:20px ;
+            padding-bottom:20px ;
+        }
+    </style>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>坎公骑冠剑进化石计算器</title>
+</head>
+<body>
+<div id="body-wrapper">
+    <div class="container" >
+<div style="height: 50px;"></div>
+        <div class="card row clearfix" >
+            <div class="text-center card-header">
+                《坎公骑冠剑》进化石计算器
+            </div>
+            <div class="card-body col-md-12 column">
+                <form id="kanGongCaculater">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="caculateClass">计算标准</label>
+                        <div class="col-sm-10">
+                            <select class=" form-control custom-select" id="caculateClass">
+                                <option selected value="1">按计划天数计算</option>
+                                <option value="2">按每日获取进化石数计算</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="roleStar">当前星级</label>
+                        <div class="col-sm-10">
+                            <select class=" form-control custom-select" id="roleStar">
+                                <option value="1">2星</option>
+                                <option selected value="2">3星</option>
+                                <option value="3">4星</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="roleUpgrate1">当前突破次数</label>
+                        <div class="col-sm-10">
+                            <select class=" form-control custom-select" id="roleUpgrate1">
+                                <option selected value="1">未突破</option>
+                                <option value="2">+1</option>
+                                <option value="3">+2</option>
+                            </select>
+                            <select class=" form-control custom-select" id="roleUpgrate2">
+                                <option selected value="1">未突破</option>
+                                <option value="2">+1</option>
+                                <option value="3">+2</option>
+                                <option value="4">+3</option>
+                                <option value="5">+4</option>
+                                <option value="6">+5</option>
+                                <option value="7">+6</option>
+                                <option value="8">+7</option>
+                            </select>
+                            <select class=" form-control custom-select" id="roleUpgrate3">
+                                <option selected value="1">未突破</option>
+                                <option value="2">+1</option>
+                                <option value="3">+2</option>
+                                <option value="4">+3</option>
+                                <option value="5">+4</option>
+                                <option value="6">+5</option>
+                                <option value="7">+6</option>
+                                <option value="8">+7</option>
+                                <option value="9">+8</option>
+                                <option value="10">+9</option>
+                                <option value="11">+10</option>
+                                <option value="12">+11</option>
+                                <option value="13">+12</option>
+                                <option value="14">+13</option>
+                                <option value="15">+14</option>
+                                <option value="16">+15</option>
+                                <option value="17">+16</option>
+                                <option value="18">+17</option>
+                                <option value="19">+18</option>
+                                <option value="20">+19</option>
+                                <option value="21">+20</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="stornNum" class="col-sm-2 col-form-label">角色进化石库存</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stornNum">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label id="caculateClassName" for="workNum" class="col-sm-2 col-form-label">计划达成天数</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="workNum">
+                        </div>
+                    </div>
+
+
+                </form>
+                <div style="text-align:center">
+                    <button onclick="kanCaculate()" class="btn btn-primary">计算</button>
+                </div>
+                <div style="height: 60px"></div>
+                <div id="kanResultBox" class="card">
+                    <div id="kanResult" class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span><br><span>本站访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+            <div class="copyright"> ©2020 - 2021 By 冰卡诺</div>
+        </div>
+    </div>
+
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    //正数加天数，负数减天数
+    Date.prototype.addDay=function(num){
+        return new Date(Date.parse(this) + (86400000 * num));
+    }
+    var myDate=new Date();
+
+    function kanCaculate(){
+//定义变量
+        var workNum = document.getElementById('workNum').value
+        var stornNum = document.getElementById('stornNum').value
+        var roleUpgrate3 = document.getElementById('roleUpgrate3').value
+        var roleUpgrate2 = document.getElementById('roleUpgrate2').value
+        var roleUpgrate1 = document.getElementById('roleUpgrate1').value
+        var caculateType = document.getElementById('caculateClass').value
+        var aimNum = 0
+        var aimDayNum = 0
+        var aimItemNum = 0
+        var aimWeekNum = 0
+//计算进化石总量
+        if ($('#roleStar').val() === "1"){
+            aimNum = 840+320+120-stornNum-(roleUpgrate1-1)*40
+            //console.log('目标获取数量：'+aimNum)
+        }
+        if ($('#roleStar').val() === "2"){
+            aimNum = 840+320-stornNum-(roleUpgrate2-1)*40
+            //console.log('目标获取数量：'+aimNum)
+        }
+        if ($('#roleStar').val() === "3"){
+            aimNum = 840-stornNum-(roleUpgrate3-1)*40
+            //console.log('目标获取数量：'+aimNum)
+        }
+//计算所需天数
+        if(caculateType === "1"){
+            //console.log('按天数计算')
+            aimItemNum = Math.ceil(aimNum/workNum)
+            aimDayNum = Math.ceil(aimNum/aimItemNum)
+            if (aimItemNum*7>aimNum){
+                aimWeekNum = aimNum
+            }
+            else{
+                aimWeekNum = aimItemNum*7
+            }
+            //console.log('每天肝：'+aimItemNum+'每周肝：'+aimItemNum*7+'；需要肝：'+aimDayNum +'天')
+        }
+//计算所需个数
+        if(caculateType === "2"){
+            //console.log('按个数计算')
+            aimDayNum = Math.ceil(aimNum/workNum)
+            aimItemNum = workNum
+            if (aimItemNum*7>aimNum){
+                aimWeekNum = aimNum
+            }
+            else{
+                aimWeekNum = aimItemNum*7
+            }
+            //console.log('每天肝：'+aimItemNum+'每周肝：'+aimItemNum*7+'；需要肝：'+aimDayNum +'天')
+        }
+//展示数据
+        document.getElementById('kanResultBox').style.display ='block'
+        document.getElementById('kanResult').innerHTML = `
+                    <h5 class="card-title">计算结果</h5>
+                    <hr>
+                    <p>预计5星达成日期：${myDate.addDay(aimDayNum).toLocaleDateString()}</p>
+                    <p>爆肝天数：${aimDayNum}天</p>
+                    <p>每日需获取：${aimItemNum}个</p>
+                    <p>每周需获取：${aimWeekNum}个</p>
+                    <p>目标获取进化石数：${aimNum}个</p>
+        `
+    }
+    document.getElementById('stornNum').value = 0
+    document.getElementById('workNum').value = 90
+    document.getElementById('roleUpgrate1').style.display ='none'
+    document.getElementById('roleUpgrate3').style.display ='none'
+    document.getElementById('kanResultBox').style.display ='none'
+
+    $('#roleStar').change(function(){
+        if($('#roleStar').val() === "1"){
+            document.getElementById('roleUpgrate1').style.display ='block'
+            document.getElementById('roleUpgrate2').style.display ='none'
+            document.getElementById('roleUpgrate3').style.display ='none'
+            document.getElementById('roleUpgrate1')[0].selected=true
+        }
+        if($('#roleStar').val() === "2"){
+            document.getElementById('roleUpgrate1').style.display ='none'
+            document.getElementById('roleUpgrate2').style.display ='block'
+            document.getElementById('roleUpgrate3').style.display ='none'
+            document.getElementById('roleUpgrate2')[0].selected=true
+        }
+        if($('#roleStar').val() === "3"){
+            document.getElementById('roleUpgrate1').style.display ='none'
+            document.getElementById('roleUpgrate2').style.display ='none'
+            document.getElementById('roleUpgrate3').style.display ='block'
+            document.getElementById('roleUpgrate3')[0].selected=true
+        }
+    })
+    $('#kanGongCaculater').change(function(){
+        if($('#caculateClass').val() === "1"){
+            document.getElementById('caculateClassName').innerText ='计划达成天数'
+        }
+        if($('#caculateClass').val() === "2"){
+            document.getElementById('caculateClassName').innerText ='每日计划获取'
+        }
+
+    });
+
+</script>
+</body>
+
+</html>
